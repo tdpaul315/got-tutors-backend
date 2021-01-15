@@ -5,12 +5,12 @@ class TutorsController < ApplicationController
   def index
     @tutors = Tutor.all
 
-    render json: @tutors
+    render json: @tutors.as_json(include:{sessions:{only:[:id, :name, :description, :date, :tutor_id]}})
   end
 
   # GET /tutors/1
   def show
-    render json: @tutor
+    render json: @tutor.as_json(include:{sessions:{only:[:id, :name, :description, :date, :tutor_id]}})
   end
 
   # POST /tutors
@@ -36,6 +36,7 @@ class TutorsController < ApplicationController
   # DELETE /tutors/1
   def destroy
     @tutor.destroy
+    render json: @tutor
   end
 
   private

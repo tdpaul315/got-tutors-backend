@@ -3,9 +3,13 @@ class SessionsController < ApplicationController
 
   # GET /sessions
   def index
-    @sessions = Session.all
-
-    render json: @sessions
+    if params[:tutor_id]
+      @tutor = Session.find(params[:tutor_id])
+      @sessions = @tutor.sessions 
+    else
+      @sessions = Session.all
+    end
+      render json: @sessions
   end
 
   # GET /sessions/1
@@ -36,6 +40,7 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   def destroy
     @session.destroy
+    render json: @session
   end
 
   private
