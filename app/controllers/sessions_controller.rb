@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
   # GET /sessions
   def index
     if params[:tutor_id]
-      @tutor = Session.find(params[:tutor_id])
-      @sessions = @tutor.sessions 
+      @tutor = Tutor.find(params[:tutor_id])
+      @sessions = @tutor.sessions
     else
-      @sessions = Session.all
+      @sessions = Session.all 
     end
-      render json: @sessions
+    render json: @sessions
   end
 
   # GET /sessions/1

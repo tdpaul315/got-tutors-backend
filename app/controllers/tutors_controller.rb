@@ -36,7 +36,7 @@ class TutorsController < ApplicationController
   # DELETE /tutors/1
   def destroy
     @tutor.destroy
-    render json: @tutor
+    render json: @tutor 
   end
 
   private
@@ -47,6 +47,6 @@ class TutorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tutor_params
-      params.require(:tutor).permit(:name, :course, :yrs_of_exp)
+      params.require(:tutor).permit(:name, :course, :yrs_of_exp, :availability)
     end
 end
